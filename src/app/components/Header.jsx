@@ -1,12 +1,14 @@
 "use client";
-import { Button, Navbar, TextInput } from "flowbite-react";
+import { Button, Navbar, TextInput, theme } from "flowbite-react";
 import Link from "next/link";
 import { AiOutlineSearch } from "react-icons/ai";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 
 export default function Header() {
   const path = usePathname();
+  const { theme, setTheme } = useTheme();
 
   return (
     <Navbar className="border-b-2">
@@ -37,7 +39,7 @@ export default function Header() {
           pill
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         >
-          <FaMoon />
+          {theme === "light" ? <FaSun /> : <FaMoon />}
         </Button>
 
         <Link href="/sign-in">
